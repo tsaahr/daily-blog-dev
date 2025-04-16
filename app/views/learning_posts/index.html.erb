@@ -1,9 +1,22 @@
+<%= form_with url: learning_posts_path, method: :get, local: true do %>
+  <div class="mb-4 flex gap-2">
+    <%= text_field_tag :query, params[:query], placeholder: "Search posts...", class: "border p-2 rounded w-full" %>
+    <%= submit_tag "Search", class: "bg-blue-500 text-white px-4 py-2 rounded" %> 
+  </div>
+<% end %>
+
+
 <h1 class="text-3xl font-bold mb-4">Timeline</h1>
+
+<% if @learning_posts.empty? %>
+  <p class="text-gray-500">No posts found matching your search.</p>
+<% end %>
+
 
 <% @learning_posts.each do |post| %>
   <div class="bg-white p-4 mb-4 rounded shadow">
     <h2 class="text-xl font-semibold"><%= link_to post.title, post %></h2>
-    <p class="text-sm text-gray-500">por <%= post.user.email %> - <%= time_ago_in_words(post.created_at) %> atrás</p>
+    <p class="text-sm text-gray-500">por <%= post.user.email %> - <%= time_ago_in_words(post.created_at) %> ago</p>
     <div class="mt-2">
       <% post.tag_list.each do |tag| %>
         <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-2">#<%= tag %></span>

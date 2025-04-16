@@ -6,7 +6,17 @@ class LearningPostsController < ApplicationController
 
   def index
     @learning_posts = LearningPost.where(public: true).order(created_at: :desc)
+  
+    if params[:query].present?
+      @learning_posts = @learning_posts.where(
+        "title ILIKE ? OR content ILIKE ?",
+        "%#{params[:query]}%",
+        "%#{params[:query]}%"
+      )
+    end
+
   end
+  
 
   def show
     if !@learning_post.public && @learning_post.user != current_user
