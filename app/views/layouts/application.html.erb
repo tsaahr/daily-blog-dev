@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Daily Blog Dev" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    
+  </head>
+
+  <body>
+    <nav class="bg-gray-800 p-4 text-white mb-4">
+  <div class="flex justify-between">
+    <%= link_to "Daily Blog Dev", root_path, class: "font-bold" %>
+
+    <% if user_signed_in? %>
+      <div>
+        <%= link_to "Posts", learning_posts_path, class: "mr-4" %>
+        <%= link_to "My posts", my_posts_learning_posts_path, class: "mr-4" %>
+        <%= link_to "New post", new_learning_post_path, class: "mr-4" %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+      </div>
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+  </div>
+</nav>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+module LearningPostsHelper
+end

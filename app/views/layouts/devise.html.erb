@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title><%= content_for(:title) || "Daily Blog Dev" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body class="bg-gray-50 min-h-screen flex items-center justify-center px-4">
+    <main class="w-full max-w-2xl transition-all">
+      <div class="bg-white border border-gray-200 rounded-2xl shadow-xl px-8 py-10 sm:px-12">
+        <div class="text-center mb-10">
+          <h1 class="text-4xl font-extrabold text-indigo-600">Daily Blog Dev</h1>
+          <p class="text-base text-gray-500 mt-3">Share what you learned today 🧠</p>
+        </div>
+
+        <%= yield %>
+      </div>
+
+      <p class="text-center text-sm text-gray-400 mt-8">
+        &copy; <%= Date.today.year %> Daily Blog Dev. All rights reserved.
+      </p>
+    </main>
+  </body>
+</html>
