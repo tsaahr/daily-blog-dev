@@ -1,24 +1,35 @@
-# README
+# 🧠 Daily Blog Dev
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A minimal platform where developers can log what they’ve learned each day — with tags, visibility options (public/private), and personal ownership.
 
-Things you may want to cover:
+🚧 **This project is currently under development. It’s functional but not yet complete. Expect frequent changes.**
 
-* Ruby version
+## ✨ Features (So far)
 
-* System dependencies
+- ✅ User authentication with Devise
+- ✅ CRUD for learning posts
+- ✅ Public and private post visibility
+- ✅ Tag system using ActsAsTaggableOn
+- ✅ Basic Tailwind CSS styling
+- ✅ Personal area (`My Posts`) and public timeline
 
-* Configuration
+---
 
-* Database creation
+## 📸 Screenshots
 
-* Database initialization
+_(Will be added as the UI improves)_
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+## 🛠️ Tech Stack
 
-* Deployment instructions
+- **Ruby on Rails 7**
+- **PostgreSQL**
+- **Devise** (Authentication)
+- **ActsAsTaggableOn** (Tags)
+- **Tailwind CSS**
+- **ESBuild** (Asset bundler)
 
-* ...
+---
+
+Made by [Lithierry]
