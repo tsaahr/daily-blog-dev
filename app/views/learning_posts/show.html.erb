@@ -1,20 +1,28 @@
-<h1 class="text-2xl font-bold mb-4"><%= @learning_post.title %></h1>
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4">
+    <%= @learning_post.title %>
+  </h1>
 
-<p class="text-gray-600 mb-2">Criado por <%= @learning_post.user.email %> em <%= @learning_post.created_at.strftime("%d/%m/%Y") %></p>
+  <p class="text-sm text-gray-500 mb-6">
+    Criado por <span class="font-medium text-gray-700"><%= @learning_post.user.email %></span> em <%= @learning_post.created_at.strftime("%d/%m/%Y") %>
+  </p>
 
-<div class="prose">
-  <%= simple_format(@learning_post.content) %>
-</div>
+  <div class="prose max-w-none mb-6">
+    <%= simple_format(@learning_post.content) %>
+  </div>
 
-<div class="mt-4">
-  <% @learning_post.tag_list.each do |tag| %>
-    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-2">#<%= tag %></span>
+  <% if @learning_post.tag_list.any? %>
+    <div class="mb-6 flex flex-wrap gap-2">
+      <% @learning_post.tag_list.each do |tag| %>
+        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">#<%= tag %></span>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @learning_post.user == current_user %>
+    <div class="flex gap-4 text-sm">
+      <%= link_to "✏️ Editar", edit_learning_post_path(@learning_post), class: "text-yellow-600 hover:underline" %>
+      <%= link_to "🗑️ Excluir", @learning_post, method: :delete, data: { confirm: "Tem certeza?" }, class: "text-red-600 hover:underline" %>
+    </div>
   <% end %>
 </div>
-
-<% if @learning_post.user == current_user %>
-  <div class="mt-6">
-    <%= link_to "Editar", edit_learning_post_path(@learning_post), class: "text-yellow-600 mr-4" %>
-    <%= link_to "Excluir", @learning_post, method: :delete, data: { confirm: "Tem certeza?" }, class: "text-red-600" %>
-  </div>
-<% end %>

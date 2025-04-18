@@ -1,26 +1,32 @@
-<%= form_with url: learning_posts_path, method: :get, local: true do %>
-  <div class="mb-4 flex gap-2">
-    <%= text_field_tag :query, params[:query], placeholder: "Search posts...", class: "border p-2 rounded w-full" %>
-    <%= submit_tag "Search", class: "bg-blue-500 text-white px-4 py-2 rounded" %> 
-  </div>
-<% end %>
-
-
-<h1 class="text-3xl font-bold mb-4">Timeline</h1>
-
-<% if @learning_posts.empty? %>
-  <p class="text-gray-500">No posts found matching your search.</p>
-<% end %>
-
-
-<% @learning_posts.each do |post| %>
-  <div class="bg-white p-4 mb-4 rounded shadow">
-    <h2 class="text-xl font-semibold"><%= link_to post.title, post %></h2>
-    <p class="text-sm text-gray-500">por <%= post.user.email %> - <%= time_ago_in_words(post.created_at) %> ago</p>
-    <div class="mt-2">
-      <% post.tag_list.each do |tag| %>
-        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-2">#<%= tag %></span>
-      <% end %>
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <%= form_with url: learning_posts_path, method: :get, local: true do %>
+    <div class="mb-6 flex flex-col sm:flex-row gap-3">
+      <%= text_field_tag :query, params[:query], placeholder: "Search posts...", class: "w-full sm:w-auto flex-grow border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= submit_tag "Search", class: "bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-md transition" %>
     </div>
+  <% end %>
+
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">🕒 Timeline</h1>
+
+  <% if @learning_posts.empty? %>
+    <p class="text-gray-500 italic">No posts found matching your search.</p>
+  <% end %>
+
+  <div class="space-y-6">
+    <% @learning_posts.each do |post| %>
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold text-blue-700 hover:underline">
+          <%= link_to post.title, post %>
+        </h2>
+        <p class="text-sm text-gray-500 mb-2">
+          by <span class="font-medium text-gray-700"><%= post.user.email %></span> · <%= time_ago_in_words(post.created_at) %> ago
+        </p>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <% post.tag_list.each do |tag| %>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">#<%= tag %></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

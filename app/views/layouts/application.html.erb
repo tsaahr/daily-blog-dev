@@ -23,23 +23,24 @@
     
   </head>
 
-  <body>
-    <nav class="bg-gray-800 p-4 text-white mb-4">
-  <div class="flex justify-between">
-    <%= link_to "Daily Blog Dev", root_path, class: "font-bold" %>
-
-    <% if user_signed_in? %>
-      <div>
-        <%= link_to "Posts", learning_posts_path, class: "mr-4" %>
-        <%= link_to "My posts", my_posts_learning_posts_path, class: "mr-4" %>
-        <%= link_to "New post", new_learning_post_path, class: "mr-4" %>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+  <body class="bg-gray-100 text-gray-900 font-sans min-h-screen flex flex-col">
+    <nav class="bg-gray-900 text-white shadow">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <%= link_to "Daily Blog Dev", root_path, class: "text-xl font-bold hover:text-gray-300" %>
+        <% if user_signed_in? %>
+          <div class="space-x-4">
+            <%= link_to "Posts", learning_posts_path, class: "hover:text-gray-300" %>
+            <%= link_to "My posts", my_posts_learning_posts_path, class: "hover:text-gray-300" %>
+            <%= link_to "New post", new_learning_post_path, class: "hover:text-gray-300" %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "hover:text-red-400" %>
+          </div>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "hover:text-blue-300" %>
+        <% end %>
       </div>
-    <% else %>
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
-  </div>
-</nav>
-    <%= yield %>
+    </nav>
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-8">
+      <%= yield %>
+    </main>
   </body>
 </html>
