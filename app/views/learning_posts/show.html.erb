@@ -21,8 +21,8 @@
 
   <% if @learning_post.user == current_user %>
     <div class="flex gap-4 text-sm">
-      <%= link_to "✏️ Editar", edit_learning_post_path(@learning_post), class: "text-yellow-600 hover:underline" %>
-      <%= link_to "🗑️ Excluir", @learning_post, method: :delete, data: { confirm: "Tem certeza?" }, class: "text-red-600 hover:underline" %>
+      <%= link_to "✏️ Edit", edit_learning_post_path(@learning_post), class: "text-yellow-600 hover:underline" %>
+      <%= link_to "🗑️ Delete", @learning_post, method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline" %>
     </div>
   <% end %>
 </div>
