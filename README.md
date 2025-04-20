@@ -15,12 +15,6 @@ A minimal platform where developers can log what they’ve learned each day — 
 
 ---
 
-## 📸 Screenshots
-
-_(Will be added as the UI improves)_
-
----
-
 ## 🛠️ Tech Stack
 
 - **Ruby on Rails 7**
