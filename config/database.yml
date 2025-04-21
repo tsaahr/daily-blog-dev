@@ -1,10 +1,6 @@
 production:
   primary:
-    adapter: postgresql
     url: <%= ENV['DATABASE_URL'] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  cable:
-    adapter: postgresql
+  queue:
     url: <%= ENV['DATABASE_URL'] %>
-    pool: 5
