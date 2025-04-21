@@ -7,8 +7,7 @@ Rails.application.routes.draw do
     end
   end
   get "home/index"
-
   get "up" => "rails/health#show", as: :rails_health_check
-
+  mount ActionCable.server => "/cable"
   root "learning_posts#index"
 end
